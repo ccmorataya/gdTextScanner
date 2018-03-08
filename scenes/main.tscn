@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scenes/main.gd" type="Script" id=1]
 
@@ -24,7 +24,7 @@ font/use_mipmaps = false
 font/use_filter = false
 font/font = SubResource( 3 )
 
-[sub_resource type="CanvasItemShader" id=9]
+[sub_resource type="CanvasItemShader" id=5]
 
 _code = {
 "fragment": "//COLOR = color(0,0,0,1);",
@@ -35,9 +35,9 @@ _code = {
 "vertex_ofs": 0
 }
 
-[sub_resource type="CanvasItemMaterial" id=10]
+[sub_resource type="CanvasItemMaterial" id=6]
 
-shader/shader = SubResource( 9 )
+shader/shader = SubResource( 5 )
 shader/shading_mode = 0
 
 [sub_resource type="DynamicFontData" id=7]
@@ -50,6 +50,17 @@ font/size = 20
 font/use_mipmaps = false
 font/use_filter = false
 font/font = SubResource( 7 )
+
+[sub_resource type="DynamicFontData" id=9]
+
+font_path = "res://fonts/arial.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+
+font/size = 24
+font/use_mipmaps = false
+font/use_filter = false
+font/font = SubResource( 9 )
 
 [node name="main" type="Node2D"]
 
@@ -109,7 +120,7 @@ flat = false
 
 [node name="ln_path" type="LineEdit" parent="."]
 
-material/material = SubResource( 10 )
+material/material = SubResource( 6 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -119,7 +130,6 @@ margin/top = 95.0
 margin/right = 836.0
 margin/bottom = 134.0
 custom_fonts/font = SubResource( 8 )
-text = "test"
 placeholder/alpha = 0.6
 editable = false
 focus_mode = 2
@@ -132,10 +142,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 127.0
-margin/top = 236.0
-margin/right = 414.0
-margin/bottom = 564.0
+margin/left = 360.0
+margin/top = 240.0
+margin/right = 660.0
+margin/bottom = 568.0
 syntax_highlighting = false
 show_line_numbers = false
 highlight_all_occurrences = false
@@ -143,22 +153,87 @@ caret/block_caret = false
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[node name="txt_const" type="TextEdit" parent="."]
+[node name="lbl_var" type="Label" parent="txt_var"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 80.0
+margin/top = -40.0
+margin/right = 228.0
+margin/bottom = -12.0
+custom_fonts/font = SubResource( 10 )
+text = "Variables"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="txt_original" type="TextEdit" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 536.0
-margin/top = 237.0
-margin/right = 823.0
-margin/bottom = 565.0
+margin/left = 40.0
+margin/top = 240.0
+margin/right = 340.0
+margin/bottom = 568.0
 syntax_highlighting = false
 show_line_numbers = false
 highlight_all_occurrences = false
 caret/block_caret = false
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
+
+[node name="lbl_original" type="Label" parent="txt_original"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 80.0
+margin/top = -40.0
+margin/right = 228.0
+margin/bottom = -12.0
+custom_fonts/font = SubResource( 10 )
+text = "Texto Original"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="txt_terminal" type="TextEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 680.0
+margin/top = 240.0
+margin/right = 980.0
+margin/bottom = 568.0
+syntax_highlighting = false
+show_line_numbers = false
+highlight_all_occurrences = false
+caret/block_caret = false
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="lbl_terminal" type="Label" parent="txt_terminal"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 80.0
+margin/top = -40.0
+margin/right = 228.0
+margin/bottom = -12.0
+custom_fonts/font = SubResource( 10 )
+text = "Terminales"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="fd_selectFile" type="FileDialog" parent="."]
 
@@ -175,10 +250,14 @@ popup/exclusive = false
 window/title = "Open a File"
 dialog/hide_on_ok = false
 mode = 0
-access = 0
+access = 2
 filters = StringArray(  )
 show_hidden_files = false
 
 [connection signal="pressed" from="btn_select" to="." method="_on_btn_select_pressed"]
+
+[connection signal="confirmed" from="fd_selectFile" to="." method="_on_fd_selectFile_confirmed"]
+
+[connection signal="file_selected" from="fd_selectFile" to="." method="_on_fd_selectFile_file_selected"]
 
 
