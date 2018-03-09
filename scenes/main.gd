@@ -42,9 +42,10 @@ func extractSymbols(pattern, text, splitChar, columnToInsert):
 		i = regex.find(text, i) + 1
 		strArray.append(str(regex.get_capture(0)))
 # TODO remove duplicated variables in strArray
+	removeDuplicates(strArray)
 	print(str(pattern, " ", strArray))
 	for single in strArray:
-		var char = single.split(splitChar)[0]
+		var char = single.split(splitChar)[0] if typeof(single) != TYPE_NIL else ""
 		#print(typeof(char))
 		if char.substr(0,1) == "\'":
 			columnToInsert.insert_text_at_cursor(char.substr(1, char.length()-2))
@@ -52,3 +53,24 @@ func extractSymbols(pattern, text, splitChar, columnToInsert):
 			columnToInsert.insert_text_at_cursor(char)
 		columnToInsert.insert_text_at_cursor("\n")
 	pass
+
+func removeDuplicates(strArray):
+	var lenArray = strArray.size()
+	if lenArray == 0:
+		return 0
+	elif lenArray == 1:
+		return 1
+	
+	var tmpStrArray = []
+	tmpStrArray.resize(strArray.size())
+	var tmpIndex = 0
+	for i in range(0, lenArray-1):
+		if strArray[i] != strArray[i+1]:
+			tmpStrArray[tmpIndex] = strArray[i]
+			tmpIndex += 1
+	
+	tmpStrArray[tmpIndex] = strArray[lenArray-1]
+	tmpIndex += 1
+	for i in range (0, tmpStrArray.size()):
+		strArray[i] = tmpStrArray[i]
+	return tmpIndex
