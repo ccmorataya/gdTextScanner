@@ -23,7 +23,28 @@ func _on_fd_selectFile_confirmed():
 	var fileName = str("res://", fd.get_current_file())
 	path.set_text(fileName)
 	file.open(fileName, file.READ)
-	originalColumn.set_text(file.get_as_text())
+	var textFile = file.get_as_text()
+	originalColumn.set_text(textFile)
+	file.close()
+	var regex = RegEx.new()
+	regex.compile("\\w:")
+	var strArray = []
+	var i = 0
+	while regex.find(textFile, i) >= 0:
+		i = regex.find(textFile, i) + 1
+		strArray.append(str(regex.get_capture(0)))
+
+	for single in strArray:
+		print(single.split(":"))
+		varColumn.insert_text_at_cursor(single.split(":")[0])
+		varColumn.insert_text_at_cursor("\n")
+	#print(strArray)
+#		prints(regex.get_capture(regex.find(textFile, i)),  regex.get_capture_start(1))
+#		i = regex.get_capture_start(1) + regex.get_capture(1).length()
+
+	#var variables = regex.get_captures()
+#	for single in variables:
+#		print(single.split(":"))
 
 func _on_fd_selectFile_file_selected( path ):
 	_on_fd_selectFile_confirmed()
