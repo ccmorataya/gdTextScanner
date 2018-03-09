@@ -34,17 +34,13 @@ func _on_fd_selectFile_confirmed():
 		i = regex.find(textFile, i) + 1
 		strArray.append(str(regex.get_capture(0)))
 
+# TODO remove duplicated variables
 	for single in strArray:
 		print(single.split(":"))
 		varColumn.insert_text_at_cursor(single.split(":")[0])
 		varColumn.insert_text_at_cursor("\n")
-	#print(strArray)
-#		prints(regex.get_capture(regex.find(textFile, i)),  regex.get_capture_start(1))
-#		i = regex.get_capture_start(1) + regex.get_capture(1).length()
 
-	#var variables = regex.get_captures()
-#	for single in variables:
-#		print(single.split(":"))
+# TODO add terminales
 
 func _on_fd_selectFile_file_selected( path ):
 	_on_fd_selectFile_confirmed()
