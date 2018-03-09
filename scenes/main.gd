@@ -26,21 +26,29 @@ func _on_fd_selectFile_confirmed():
 	var textFile = file.get_as_text()
 	originalColumn.set_text(textFile)
 	file.close()
-	var regex = RegEx.new()
-	regex.compile("\\w:")
-	var strArray = []
-	var i = 0
-	while regex.find(textFile, i) >= 0:
-		i = regex.find(textFile, i) + 1
-		strArray.append(str(regex.get_capture(0)))
-
-# TODO remove duplicated variables
-	for single in strArray:
-		print(single.split(":"))
-		varColumn.insert_text_at_cursor(single.split(":")[0])
-		varColumn.insert_text_at_cursor("\n")
-
+	extractSymbols("\\w:", textFile, ":", varColumn)
+	extractSymbols("'\\w+'", textFile, "", terminalColumn)
 # TODO add terminales
 
 func _on_fd_selectFile_file_selected( path ):
 	_on_fd_selectFile_confirmed()
+
+func extractSymbols(pattern, text, splitChar, columnToInsert):
+	var regex = RegEx.new()
+	regex.compile(pattern)
+	var strArray = []
+	var i = 0
+	while regex.find(text, i) >= 0:
+		i = regex.find(text, i) + 1
+		strArray.append(str(regex.get_capture(0)))
+# TODO remove duplicated variables in strArray
+	print(str(pattern, " ", strArray))
+	for single in strArray:
+		var char = single.split(splitChar)[0]
+		#print(typeof(char))
+		if char.substr(0,1) == "\'":
+			columnToInsert.insert_text_at_cursor(char.substr(1, char.length()-2))
+		else:
+			columnToInsert.insert_text_at_cursor(char)
+		columnToInsert.insert_text_at_cursor("\n")
+	pass
