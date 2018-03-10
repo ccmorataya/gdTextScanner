@@ -27,7 +27,7 @@ func _on_fd_selectFile_confirmed():
 	var textFile = file.get_as_text()
 	originalColumn.set_text(textFile)
 	file.close()
-	extractSymbols("\\w:", textFile, ":", varColumn)
+	extractSymbols("\\w+:", textFile, ":", varColumn)
 	extractSymbols("'\\w+'", textFile, "", terminalColumn)
 
 func _on_fd_selectFile_file_selected( path ):
@@ -39,7 +39,11 @@ func extractSymbols(pattern, text, splitChar, columnToInsert):
 	var strArray = []
 	var i = 0
 	while regex.find(text, i) >= 0:
-		i = regex.find(text, i) + 1
+		if pattern == "\\w+:":
+			i = regex.find(text, i) + regex.get_capture(0).length()
+			print(i)
+		else:
+			i = regex.find(text, i) + 1		# i = position of :
 		strArray.append(str(regex.get_capture(0)))
 	removeDuplicates(strArray)
 	for single in strArray:
