@@ -39,9 +39,8 @@ func extractSymbols(pattern, text, splitChar, columnToInsert):
 	var strArray = []
 	var i = 0
 	while regex.find(text, i) >= 0:
-		if pattern == "\\w+:":
+		if splitChar == ":":
 			i = regex.find(text, i) + regex.get_capture(0).length()
-			print(i)
 		else:
 			i = regex.find(text, i) + 1		# i = position of :
 		strArray.append(str(regex.get_capture(0)))
