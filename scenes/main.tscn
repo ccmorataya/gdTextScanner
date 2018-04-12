@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=1]
 
-[ext_resource path="res://scenes/main.gd" type="Script" id=1]
+[ext_resource path="res://scripts/main.gd" type="Script" id=1]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -8,7 +8,7 @@ font_path = "res://fonts/arial.ttf"
 
 [sub_resource type="DynamicFont" id=2]
 
-font/size = 26
+font/size = 30
 font/use_mipmaps = false
 font/use_filter = false
 font/font = SubResource( 1 )
@@ -72,10 +72,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 409.0
-margin/top = 20.0
-margin/right = 601.0
-margin/bottom = 50.0
+margin/left = 480.0
+margin/top = 40.0
+margin/right = 720.0
+margin/bottom = 80.0
 custom_fonts/font = SubResource( 2 )
 text = "Scanner de texto"
 percent_visible = 1.0
@@ -107,10 +107,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 46.0
-margin/top = 102.0
-margin/right = 236.0
-margin/bottom = 132.0
+margin/left = 80.0
+margin/top = 120.0
+margin/right = 280.0
+margin/bottom = 160.0
 custom_fonts/font = SubResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -125,10 +125,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 270.0
-margin/top = 95.0
-margin/right = 972.0
-margin/bottom = 134.0
+margin/left = 320.0
+margin/top = 120.0
+margin/right = 1120.0
+margin/bottom = 159.0
 custom_fonts/font = SubResource( 8 )
 placeholder/alpha = 0.6
 editable = false
@@ -142,9 +142,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 360.0
+margin/left = 320.0
 margin/top = 240.0
-margin/right = 660.0
+margin/right = 570.0
 margin/bottom = 568.0
 syntax_highlighting = false
 show_line_numbers = false
@@ -159,9 +159,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 80.0
+margin/left = 60.0
 margin/top = -40.0
-margin/right = 228.0
+margin/right = 208.0
 margin/bottom = -12.0
 custom_fonts/font = SubResource( 10 )
 text = "Variables"
@@ -177,7 +177,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 40.0
 margin/top = 240.0
-margin/right = 340.0
+margin/right = 290.0
 margin/bottom = 568.0
 syntax_highlighting = false
 show_line_numbers = false
@@ -192,9 +192,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 80.0
+margin/left = 50.0
 margin/top = -40.0
-margin/right = 228.0
+margin/right = 198.0
 margin/bottom = -12.0
 custom_fonts/font = SubResource( 10 )
 text = "Texto Original"
@@ -208,9 +208,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 680.0
+margin/left = 600.0
 margin/top = 240.0
-margin/right = 980.0
+margin/right = 850.0
 margin/bottom = 568.0
 syntax_highlighting = false
 show_line_numbers = false
@@ -225,12 +225,45 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 80.0
+margin/left = 50.0
 margin/top = -40.0
-margin/right = 228.0
+margin/right = 198.0
 margin/bottom = -12.0
 custom_fonts/font = SubResource( 10 )
 text = "Terminales"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="txt_producciones" type="TextEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 880.0
+margin/top = 240.0
+margin/right = 1130.0
+margin/bottom = 568.0
+syntax_highlighting = false
+show_line_numbers = false
+highlight_all_occurrences = false
+caret/block_caret = false
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="lbl_producciones" type="Label" parent="txt_producciones"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 50.0
+margin/top = -40.0
+margin/right = 198.0
+margin/bottom = -12.0
+custom_fonts/font = SubResource( 10 )
+text = "Producciones"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

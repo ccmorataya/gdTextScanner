@@ -5,6 +5,7 @@ onready var path = get_node("ln_path")
 onready var varColumn = get_node("txt_var")
 onready var terminalColumn = get_node("txt_terminal")
 onready var originalColumn = get_node("txt_original")
+onready var productionColumn = get_node("txt_producciones")
 
 func _ready():
 	fd.add_filter("*.txt")
@@ -60,7 +61,7 @@ func removeDuplicates(strArray):
 		return 0
 	elif lenArray == 1:
 		return 1
-	
+
 	var tmpStrArray = []
 	tmpStrArray.resize(strArray.size())
 	var tmpIndex = 0
@@ -68,7 +69,7 @@ func removeDuplicates(strArray):
 		if strArray[i] != strArray[i+1]:
 			tmpStrArray[tmpIndex] = strArray[i]
 			tmpIndex += 1
-	
+
 	tmpStrArray[tmpIndex] = strArray[lenArray-1]
 	tmpIndex += 1
 	for i in range (0, tmpStrArray.size()):
