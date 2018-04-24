@@ -6,6 +6,9 @@ onready var varColumn = get_node("txt_var")
 onready var terminalColumn = get_node("txt_terminal")
 onready var originalColumn = get_node("txt_original")
 onready var productionColumn = get_node("txt_producciones")
+var varText = []
+var terminalText = []
+var productionText = []
 
 func _ready():
 	OS.set_window_fullscreen(true)
@@ -34,6 +37,9 @@ func _on_fd_selectFile_confirmed():
 	extractSymbols("\\w+:", textFile, ":", varColumn)
 	extractSymbols("'\\w+'", textFile, "", terminalColumn)
 	extractSymbols("\\w+", textFile, "", productionColumn)
+	print(str("CM:: VARS", varText))
+	print(str("CM:: TERMS", terminalText))
+	print(str("CM:: PRODS", productionText))
 
 func _on_fd_selectFile_file_selected( path ):
 	_on_fd_selectFile_confirmed()
@@ -49,6 +55,7 @@ func extractSymbols(pattern, text, splitChar, columnToInsert):
 		else:
 			i = regex.find(text, i) + 1		# i = position of :
 		strArray.append(str(regex.get_capture(0)))
+	
 	removeDuplicates(strArray)
 	for single in strArray:
 		var char = single.split(splitChar)[0] if typeof(single) != TYPE_NIL else ""
@@ -57,7 +64,12 @@ func extractSymbols(pattern, text, splitChar, columnToInsert):
 		else:
 			columnToInsert.insert_text_at_cursor(char)
 		columnToInsert.insert_text_at_cursor("\n")
-	pass
+	if (columnToInsert == varColumn):
+		varText = strArray
+	elif (columnToInsert == terminalColumn):
+		terminalText = strArray
+	elif (columnToInsert == productionColumn):
+		productionText = strArray
 
 func removeDuplicates(strArray):
 	var lenArray = strArray.size()
@@ -65,7 +77,7 @@ func removeDuplicates(strArray):
 		return 0
 	elif lenArray == 1:
 		return 1
-
+	
 	var tmpStrArray = []
 	tmpStrArray.resize(strArray.size())
 	var tmpIndex = 0
@@ -73,7 +85,7 @@ func removeDuplicates(strArray):
 		if strArray[i] != strArray[i+1]:
 			tmpStrArray[tmpIndex] = strArray[i]
 			tmpIndex += 1
-
+	
 	tmpStrArray[tmpIndex] = strArray[lenArray-1]
 	tmpIndex += 1
 	for i in range (0, tmpStrArray.size()):
@@ -82,3 +94,5 @@ func removeDuplicates(strArray):
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+#CM-TODO remove special chars like : and ' from String Array and reimplement in extractSymbols: splitChar
