@@ -108,7 +108,6 @@ func productions(originalText, columnToInsert):
 		var rightIndex = rightRegex.find(line)
 		right = line.substr(rightIndex, line.length())
 		var innerSplit = right.split("|")
-		print(str("innesplit:: ", innerSplit))
 		for rightItem in innerSplit:
 			rightItem = rightItem.replace("\'", "")
 			line = str(left, rightItem)
