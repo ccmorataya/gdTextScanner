@@ -35,7 +35,7 @@ func _on_fd_selectFile_confirmed():
 	file.close()
 	extractSymbols("\\w+:", textFile, ":", varColumn)
 	extractSymbols("'\\w+'", textFile, "", terminalColumn)
-	productions(textFile, varText, productionColumn)
+	productions(textFile, productionColumn)
 #	extractSymbols("\\w+", textFile, "", productionColumn)
 
 func _on_fd_selectFile_file_selected( path ):
@@ -92,30 +92,26 @@ func removeDuplicates(strArray):
 func _on_Exit_pressed():
 	get_tree().quit()
 
-func productions(originalText, variables, columnToInsert):
-	
+func productions(originalText, columnToInsert):
 	var splited = originalText.split("\n")
 	for line in splited:
-		print(line)
-#	var dict = {}
-#	var lines = []
-#	var find = int()
-#	var regex = RegEx.new()
-#	regex.compile("(\r\n|\r|\n)")
-#	while regex.find(originalText) > 0:
-#		find = regex.find(originalText)
-#		lines.append(originalText.substr(0, find))
-#	print(lines)
-#	for item in variables:
-#		#CM: Scann originalText line by line
-#		pass#print(item)
-	
-	"""
-	Format to print:
-		S -> a
-		S -> b
-		S -> SS
-	"""
-	pass
+		var left = ""
+		var right = ""
+		var leftRegex = RegEx.new()
+		leftRegex.compile("\\w+:")
+		leftRegex.find(line)
+		left = leftRegex.get_capture(0)
+		left = left.replace(":", "\t->")
+		
+		var rightRegex = RegEx.new()
+		rightRegex.compile("(?!\\w+:) .\\w.+")
+		var rightIndex = rightRegex.find(line)
+		right = line.substr(rightIndex, line.length())
+		var innerSplit = right.split("|")
+		print(str("innesplit:: ", innerSplit))
+		for rightItem in innerSplit:
+			rightItem = rightItem.replace("\'", "")
+			line = str(left, rightItem)
+			columnToInsert.insert_text_at_cursor((str(line, "\n")))
 
 #CM-TODO remove special chars like : and ' from String Array and reimplement in extractSymbols: splitChar
