@@ -51,17 +51,6 @@ font/use_mipmaps = false
 font/use_filter = false
 font/font = SubResource( 7 )
 
-[sub_resource type="DynamicFontData" id=12]
-
-font_path = "res://fonts/arial.ttf"
-
-[sub_resource type="DynamicFont" id=11]
-
-font/size = 24
-font/use_mipmaps = false
-font/use_filter = false
-font/font = SubResource( 12 )
-
 [sub_resource type="DynamicFontData" id=9]
 
 font_path = "res://fonts/arial.ttf"
@@ -72,6 +61,17 @@ font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
 font/font = SubResource( 9 )
+
+[sub_resource type="DynamicFontData" id=11]
+
+font_path = "res://fonts/arial.ttf"
+
+[sub_resource type="DynamicFont" id=12]
+
+font/size = 24
+font/use_mipmaps = false
+font/use_filter = false
+font/font = SubResource( 11 )
 
 [sub_resource type="DynamicFontData" id=13]
 
@@ -171,7 +171,7 @@ margin/left = 320.0
 margin/top = 240.0
 margin/right = 570.0
 margin/bottom = 568.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 syntax_highlighting = false
 show_line_numbers = false
 highlight_all_occurrences = false
@@ -189,7 +189,7 @@ margin/left = 60.0
 margin/top = -40.0
 margin/right = 208.0
 margin/bottom = -12.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "Variables"
 percent_visible = 1.0
 lines_skipped = 0
@@ -205,7 +205,7 @@ margin/left = 40.0
 margin/top = 240.0
 margin/right = 290.0
 margin/bottom = 568.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 syntax_highlighting = false
 show_line_numbers = false
 highlight_all_occurrences = false
@@ -223,7 +223,7 @@ margin/left = 50.0
 margin/top = -40.0
 margin/right = 198.0
 margin/bottom = -12.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "Texto Original"
 percent_visible = 1.0
 lines_skipped = 0
@@ -239,7 +239,7 @@ margin/left = 600.0
 margin/top = 240.0
 margin/right = 850.0
 margin/bottom = 568.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 10 )
 syntax_highlighting = false
 show_line_numbers = false
 highlight_all_occurrences = false
@@ -257,7 +257,7 @@ margin/left = 50.0
 margin/top = -40.0
 margin/right = 198.0
 margin/bottom = -12.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "Terminales"
 percent_visible = 1.0
 lines_skipped = 0
@@ -291,7 +291,7 @@ margin/left = 50.0
 margin/top = -40.0
 margin/right = 198.0
 margin/bottom = -12.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 12 )
 text = "Producciones"
 percent_visible = 1.0
 lines_skipped = 0

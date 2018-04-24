@@ -11,7 +11,7 @@ var terminalText = []
 var productionText = []
 
 func _ready():
-	OS.set_window_fullscreen(true)
+	#OS.set_window_fullscreen(true)
 	fd.add_filter("*.txt")
 	varColumn.set_readonly(true)
 	terminalColumn.set_readonly(true)
@@ -27,7 +27,6 @@ func _on_btn_select_pressed():
 
 func _on_fd_selectFile_confirmed():
 	var file = File.new()
-	print(fd.get_current_path())
 	var fileName = fd.get_current_path()
 	path.set_text(fileName)
 	file.open(fileName, file.READ)
@@ -36,10 +35,8 @@ func _on_fd_selectFile_confirmed():
 	file.close()
 	extractSymbols("\\w+:", textFile, ":", varColumn)
 	extractSymbols("'\\w+'", textFile, "", terminalColumn)
-	extractSymbols("\\w+", textFile, "", productionColumn)
-	print(str("CM:: VARS", varText))
-	print(str("CM:: TERMS", terminalText))
-	print(str("CM:: PRODS", productionText))
+	productions(textFile, varText, productionColumn)
+#	extractSymbols("\\w+", textFile, "", productionColumn)
 
 func _on_fd_selectFile_file_selected( path ):
 	_on_fd_selectFile_confirmed()
@@ -94,5 +91,31 @@ func removeDuplicates(strArray):
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+func productions(originalText, variables, columnToInsert):
+	
+	var splited = originalText.split("\n")
+	for line in splited:
+		print(line)
+#	var dict = {}
+#	var lines = []
+#	var find = int()
+#	var regex = RegEx.new()
+#	regex.compile("(\r\n|\r|\n)")
+#	while regex.find(originalText) > 0:
+#		find = regex.find(originalText)
+#		lines.append(originalText.substr(0, find))
+#	print(lines)
+#	for item in variables:
+#		#CM: Scann originalText line by line
+#		pass#print(item)
+	
+	"""
+	Format to print:
+		S -> a
+		S -> b
+		S -> SS
+	"""
+	pass
 
 #CM-TODO remove special chars like : and ' from String Array and reimplement in extractSymbols: splitChar
