@@ -67,6 +67,7 @@ func extractSymbols(pattern, text, splitChar, columnToInsert):
 		terminalText = strArray
 	elif (columnToInsert == productionColumn):
 		productionText = strArray
+	columnToInsert.set_text(columnToInsert.get_text().strip_edges())
 
 func removeDuplicates(strArray):
 	var lenArray = strArray.size()
@@ -112,5 +113,6 @@ func productions(originalText, columnToInsert):
 			rightItem = rightItem.replace("\'", "")
 			line = str(left, rightItem)
 			columnToInsert.insert_text_at_cursor((str(line, "\n")))
+	columnToInsert.set_text(columnToInsert.get_text().strip_edges())
 
 #CM-TODO remove special chars like : and ' from String Array and reimplement in extractSymbols: splitChar
