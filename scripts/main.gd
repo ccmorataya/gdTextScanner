@@ -8,15 +8,18 @@ onready var originalColumn = get_node("txt_original")
 onready var productionColumn = get_node("txt_producciones")
 
 func _ready():
+	OS.set_window_fullscreen(true)
 	fd.add_filter("*.txt")
 	varColumn.set_readonly(true)
 	terminalColumn.set_readonly(true)
 	originalColumn.set_readonly(true)
+	productionColumn.set_readonly(true)
 
 func _on_btn_select_pressed():
 	varColumn.set_text("")
 	terminalColumn.set_text("")
 	originalColumn.set_text("")
+	productionColumn.set_text("")
 	fd.show()
 
 func _on_fd_selectFile_confirmed():
@@ -30,6 +33,7 @@ func _on_fd_selectFile_confirmed():
 	file.close()
 	extractSymbols("\\w+:", textFile, ":", varColumn)
 	extractSymbols("'\\w+'", textFile, "", terminalColumn)
+	extractSymbols("\\w+", textFile, "", productionColumn)
 
 func _on_fd_selectFile_file_selected( path ):
 	_on_fd_selectFile_confirmed()
@@ -75,3 +79,7 @@ func removeDuplicates(strArray):
 	for i in range (0, tmpStrArray.size()):
 		strArray[i] = tmpStrArray[i]
 	return tmpIndex
+
+
+func _on_Exit_pressed():
+	get_tree().quit()
