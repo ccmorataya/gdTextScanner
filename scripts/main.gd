@@ -20,7 +20,7 @@ func _on_btn_select_pressed():
 	terminalColumn.set_text("")
 	originalColumn.set_text("")
 	productionColumn.set_text("")
-	fd.show()
+	fd.popup()
 
 func _on_fd_selectFile_confirmed():
 	var file = File.new()
@@ -79,7 +79,6 @@ func removeDuplicates(strArray):
 	for i in range (0, tmpStrArray.size()):
 		strArray[i] = tmpStrArray[i]
 	return tmpIndex
-
 
 func _on_Exit_pressed():
 	get_tree().quit()
