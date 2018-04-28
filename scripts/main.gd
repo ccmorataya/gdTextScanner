@@ -36,6 +36,9 @@ func _on_fd_selectFile_confirmed():
 	extractSymbols("\\w+:", textFile, ":", varColumn)
 	extractSymbols("('.')", textFile, "", terminalColumn)
 	productions(textFile, productionColumn)
+	varColumn.set_show_line_numbers(true)
+	terminalColumn.set_show_line_numbers(true)
+	productionColumn.set_show_line_numbers(true)
 #	extractSymbols("\\w+", textFile, "", productionColumn)
 
 func _on_fd_selectFile_file_selected( path ):
@@ -105,7 +108,7 @@ func productions(originalText, columnToInsert):
 		left = left.replace(":", "\t->")
 		
 		var rightRegex = RegEx.new()
-		rightRegex.compile("(?!\\w+:) .\\w.+")
+		rightRegex.compile("(((?!\\s+:) .\\s.+)|((?!\\S+:) .\\S.+))")
 		var rightIndex = rightRegex.find(line)
 		right = line.substr(rightIndex, line.length())
 		var innerSplit = right.split("|")
