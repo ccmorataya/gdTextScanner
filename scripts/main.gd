@@ -34,7 +34,7 @@ func _on_fd_selectFile_confirmed():
 	originalColumn.set_text(textFile)
 	file.close()
 	extractSymbols("\\w+:", textFile, ":", varColumn)
-	extractSymbols("'\\w+'", textFile, "", terminalColumn)
+	extractSymbols("('.')", textFile, "", terminalColumn)
 	productions(textFile, productionColumn)
 #	extractSymbols("\\w+", textFile, "", productionColumn)
 
