@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://fonts/arial.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFontData" id=1]
 
@@ -84,6 +85,13 @@ font/use_mipmaps = false
 font/use_filter = false
 font/font = SubResource( 13 )
 
+[sub_resource type="DynamicFont" id=15]
+
+font/size = 20
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
 [node name="main" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -96,9 +104,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 480.0
-margin/top = 40.0
+margin/top = 0.0
 margin/right = 720.0
-margin/bottom = 80.0
+margin/bottom = 40.0
 custom_fonts/font = SubResource( 2 )
 text = "Scanner de texto"
 percent_visible = 1.0
@@ -132,9 +140,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 40.0
-margin/top = 120.0
+margin/top = 60.0
 margin/right = 240.0
-margin/bottom = 160.0
+margin/bottom = 100.0
 custom_fonts/font = SubResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -151,9 +159,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 280.0
-margin/top = 120.0
+margin/top = 60.0
 margin/right = 1080.0
-margin/bottom = 159.0
+margin/bottom = 99.0
 custom_fonts/font = SubResource( 8 )
 placeholder/alpha = 0.6
 editable = false
@@ -168,9 +176,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 320.0
-margin/top = 240.0
+margin/top = 180.0
 margin/right = 570.0
-margin/bottom = 568.0
+margin/bottom = 508.0
 custom_fonts/font = SubResource( 10 )
 syntax_highlighting = false
 show_line_numbers = false
@@ -202,9 +210,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 40.0
-margin/top = 240.0
+margin/top = 180.0
 margin/right = 290.0
-margin/bottom = 568.0
+margin/bottom = 508.0
 custom_fonts/font = SubResource( 10 )
 syntax_highlighting = false
 show_line_numbers = false
@@ -236,9 +244,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 600.0
-margin/top = 240.0
+margin/top = 180.0
 margin/right = 850.0
-margin/bottom = 568.0
+margin/bottom = 508.0
 custom_fonts/font = SubResource( 10 )
 syntax_highlighting = false
 show_line_numbers = false
@@ -270,9 +278,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 880.0
-margin/top = 240.0
+margin/top = 180.0
 margin/right = 1130.0
-margin/bottom = 568.0
+margin/bottom = 508.0
 custom_fonts/font = SubResource( 14 )
 syntax_highlighting = false
 show_line_numbers = false
@@ -332,6 +340,23 @@ shortcut = null
 text = "X"
 flat = false
 
+[node name="btnContinue" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 880.0
+margin/top = 540.0
+margin/right = 1131.0
+margin/bottom = 580.0
+custom_fonts/font = SubResource( 15 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Continuar"
+flat = false
+
 [connection signal="pressed" from="btn_select" to="." method="_on_btn_select_pressed"]
 
 [connection signal="confirmed" from="fd_selectFile" to="." method="_on_fd_selectFile_confirmed"]
@@ -339,5 +364,7 @@ flat = false
 [connection signal="file_selected" from="fd_selectFile" to="." method="_on_fd_selectFile_file_selected"]
 
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
+
+[connection signal="pressed" from="btnContinue" to="." method="_on_btnContinue_pressed"]
 
 
