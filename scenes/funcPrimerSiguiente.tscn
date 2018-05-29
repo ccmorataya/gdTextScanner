@@ -1,0 +1,21 @@
+[gd_scene format=1]
+
+[node name="main" type="Node2D"]
+
+[node name="New Scene" type="Label" parent="."]
+
+rect/scale = Vector2( 3, 3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 360.0
+margin/top = 200.0
+margin/right = 433.0
+margin/bottom = 214.0
+text = "NEW SCENE"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+
