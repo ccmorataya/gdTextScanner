@@ -119,3 +119,6 @@ func productions(originalText, columnToInsert):
 	columnToInsert.set_text(columnToInsert.get_text().strip_edges())
 
 #CM-TODO remove special chars like : and ' from String Array and reimplement in extractSymbols: splitChar
+
+func _on_btnContinue_pressed():
+		get_tree().change_scene("res://scenes/funcPrimerSiguiente.tscn")
