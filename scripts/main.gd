@@ -105,19 +105,28 @@ func productions(originalText, columnToInsert):
 		left = left.replace(":", "\t->")
 		
 		var rightRegex = RegEx.new()
-		rightRegex.compile("(((?!\\s+:) .\\s.+)|((?!\\S+:) .\\S.+))")
+		rightRegex.compile("(((?!\\s+:) .\\s.+)|((?!\\S+:) .\\S.+)|(e))")
 		var rightIndex = rightRegex.find(line)
 		right = line.substr(rightIndex, line.length())
+		right = str(" ", right) if right == "e" else right
 		var innerSplit = right.split("|")
 		for rightItem in innerSplit:
 			rightItem = rightItem.replace("\'", "")
 			line = str(left, rightItem)
 			columnToInsert.insert_text_at_cursor((str(line, "\n")))
+		build_dict(left, right)
 	columnToInsert.set_text(columnToInsert.get_text().strip_edges())
 	global.variables = varText
 	global.terminals = terminalText
 
-#CM-TODO remove special chars like : and ' from String Array and reimplement in extractSymbols: splitChar
+func build_dict(left, right):
+	# CM: transform the originalText to global.productionDictionary
+	left = left.replace("\t->", "")
+	if !global.productionDictionary.has(left):
+		global.productionDictionary[left] = right
+	else:
+		global.productionDictionary[left] = str(global.productionDictionary[left], " | ", right)
+	global.productionDictionary.erase("")
 
 func _on_btnContinue_pressed():
-		get_tree().change_scene("res://scenes/funcPrimerSiguiente.tscn")
+		get_tree().change_scene("res://scenes/funcFirstFollow.tscn")
