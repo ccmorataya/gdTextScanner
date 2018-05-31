@@ -11,11 +11,16 @@ var terminalText = []
 
 func _ready():
 	#OS.set_window_fullscreen(true)
+	global.productionDictionary = {}
 	fd.add_filter("*.txt")
 	varColumn.set_readonly(true)
 	terminalColumn.set_readonly(true)
 	originalColumn.set_readonly(true)
 	productionColumn.set_readonly(true)
+	set_process_input(true)
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"): _on_Exit_pressed()
 
 func _on_btn_select_pressed():
 	varColumn.set_text("")
@@ -33,7 +38,7 @@ func _on_fd_selectFile_confirmed():
 	originalColumn.set_text(textFile)
 	file.close()
 	extractSymbols("\\w+:", textFile, ":", varColumn)
-	extractSymbols("('.')", textFile, "", terminalColumn)
+	extractSymbols("'\\S+'", textFile, "", terminalColumn)
 	productions(textFile, productionColumn)
 	varColumn.set_show_line_numbers(true)
 	terminalColumn.set_show_line_numbers(true)
@@ -122,10 +127,11 @@ func productions(originalText, columnToInsert):
 func build_dict(left, right):
 	# CM: transform the originalText to global.productionDictionary
 	left = left.replace("\t->", "")
+	right = right.split("|")
 	if !global.productionDictionary.has(left):
 		global.productionDictionary[left] = right
 	else:
-		global.productionDictionary[left] = str(global.productionDictionary[left], " | ", right)
+		global.productionDictionary[left] = [global.productionDictionary[left], right] #str(global.productionDictionary[left], " | ", right)
 	global.productionDictionary.erase("")
 
 func _on_btnContinue_pressed():
