@@ -26,18 +26,12 @@ func first_set(key, dictionary):
 				splittedItem.remove(index)
 			print(splittedItem)
 			# CM: Eval rule No.1 OR nule No.3
-			if validate_rule_one_three(splittedItem, first):
-				pass
+			if global.terminals.has(splittedItem[0]) || splittedItem[0] == str("e"):
+				first += str(splittedItem[0], " ")
 			# CM: Eval rule No.2
 			else:
-				# CM: call this function recursively
-				pass
+				first_set(splittedItem[0], dictionary)
 	print(str("Primero(", key, ")\t->\t ", first))
-	
-func validate_rule_one_three(splittedItem, first):
-	if global.terminals.has(splittedItem[0]) || splittedItem[0] == str("e"):
-		first += str(splittedItem[0], " ")
-		return true
 
 func follow_set():
 	pass
