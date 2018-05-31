@@ -8,7 +8,6 @@ onready var originalColumn = get_node("txt_original")
 onready var productionColumn = get_node("txt_producciones")
 var varText = []
 var terminalText = []
-var productionText = []
 
 func _ready():
 	#OS.set_window_fullscreen(true)
@@ -68,8 +67,6 @@ func extractSymbols(pattern, text, splitChar, columnToInsert):
 		varText = strArray
 	elif (columnToInsert == terminalColumn):
 		terminalText = strArray
-	elif (columnToInsert == productionColumn):
-		productionText = strArray
 	columnToInsert.set_text(columnToInsert.get_text().strip_edges())
 
 func removeDuplicates(strArray):
@@ -117,6 +114,8 @@ func productions(originalText, columnToInsert):
 			line = str(left, rightItem)
 			columnToInsert.insert_text_at_cursor((str(line, "\n")))
 	columnToInsert.set_text(columnToInsert.get_text().strip_edges())
+	global.variables = varText
+	global.terminals = terminalText
 
 #CM-TODO remove special chars like : and ' from String Array and reimplement in extractSymbols: splitChar
 
