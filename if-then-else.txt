@@ -1,0 +1,3 @@
+instr: instr_relacionada | instr_abierta
+instr_relacionada: 'if' expr 'then' instr_relacionada 'else' instr_relacionada | 'otra'
+instr_abierta: 'if' expr 'then' instr | 'if' expr 'then' instr_relacionada 'else' instr_abierta
