@@ -2,6 +2,7 @@ extends Node2D
 
 var printString = ""
 onready var txtFirst = get_node("txt_first")
+onready var txtFollow = get_node("txt_follow")
 
 func _ready():
 	txtFirst.set_readonly(true)
@@ -11,8 +12,8 @@ func _ready():
 	var keys = dictionary.keys()
 	for key in keys:
 		first_set(key, dictionary)
-	# CM: printString holds all the data at this point
 	txtFirst.set_text(printString)
+	txtFollow.set_text("\n\n\n\t\t\t\t\t404\n\t\t\t\t\t  :(")
 	set_process_input(true)
 
 func _input(event):
