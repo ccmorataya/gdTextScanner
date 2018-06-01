@@ -41,7 +41,21 @@ func first_set(key, dictionary):
 			# TODO-CM: handle StringArray to String
 			pass
 	if first != "":
-		printString += str("Primero(", key, ")\t->  {  ", first.substr(0, first.length()-3), "  }\n")
+		first = first.replace(" ", "")
+		first = Array(first.split(","))
+		first.erase("")
+		for element in first:
+			while true:
+				var counter = first.count(element)
+				if counter > 1:
+					first.erase(element)
+				else:
+					break
+		first = String(first)
+		first = first.replace("[", "")
+		first = first.replace("]", "")
+		printString += str("Primero(", key, ")\t->  {  ", first, "  }\n")
+		#printString += str("Primero(", key, ")\t->  {  ", first.substr(0, first.length()-3), "  }\n")
 
 func follow_set():
 	pass
