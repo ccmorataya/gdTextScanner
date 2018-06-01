@@ -1,16 +1,18 @@
 extends Node2D
 
 var printString = ""
+onready var txtFirst = get_node("txt_first")
 
 func _ready():
+	txtFirst.set_readonly(true)
+	txtFirst.set_show_line_numbers(true)
 	var dictionary = global.productionDictionary
 
-	var label = get_node("New Scene")
-	label.set_text(dictionary.to_json())
 	var keys = dictionary.keys()
 	for key in keys:
 		first_set(key, dictionary)
-	print(printString)
+	# CM: printString holds all the data at this point
+	txtFirst.set_text(printString)
 	set_process_input(true)
 
 func _input(event):
