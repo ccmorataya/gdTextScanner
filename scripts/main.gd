@@ -104,7 +104,7 @@ func productions(originalText, columnToInsert):
 		left = left.replace(":", "\t->")
 		
 		var rightRegex = RegEx.new()
-		rightRegex.compile("(((?!\\s+:) .\\s.+)|((?!\\S+:) .\\S.+)|(e))")
+		rightRegex.compile("((?!\\s+:) .\\s.+)|((?!\\S+:) .\\S.+)")
 		var rightIndex = rightRegex.find(line)
 		right = line.substr(rightIndex, line.length())
 		right = str(" ", right) if right == "e" else right
