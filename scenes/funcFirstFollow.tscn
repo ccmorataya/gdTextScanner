@@ -43,9 +43,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 40.0
+margin/left = 20.0
 margin/top = 80.0
-margin/right = 600.0
+margin/right = 580.0
 margin/bottom = 520.0
 custom_fonts/font = SubResource( 2 )
 syntax_highlighting = false
@@ -67,6 +67,41 @@ margin/right = 480.0
 margin/bottom = 0.0
 custom_fonts/font = SubResource( 1 )
 text = "Función Primero"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="txt_follow" type="TextEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 620.0
+margin/top = 80.0
+margin/right = 1180.0
+margin/bottom = 520.0
+custom_fonts/font = SubResource( 2 )
+syntax_highlighting = false
+show_line_numbers = false
+highlight_all_occurrences = false
+caret/block_caret = false
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="lbl_followSet" type="Label" parent="txt_follow"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = -40.0
+margin/right = 480.0
+margin/bottom = 0.0
+custom_fonts/font = SubResource( 1 )
+text = "Función Siguiente"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
