@@ -81,19 +81,13 @@ func removeDuplicates(strArray):
 	elif lenArray == 1:
 		return 1
 	
-	var tmpStrArray = []
-	tmpStrArray.resize(strArray.size())
-	var tmpIndex = 0
-	for i in range(0, lenArray-1):
-		if strArray[i] != strArray[i+1]:
-			tmpStrArray[tmpIndex] = strArray[i]
-			tmpIndex += 1
-	
-	tmpStrArray[tmpIndex] = strArray[lenArray-1]
-	tmpIndex += 1
-	for i in range (0, tmpStrArray.size()):
-		strArray[i] = tmpStrArray[i]
-	return tmpIndex
+	for element in strArray:
+		while true:
+			var counter = strArray.count(element)
+			if counter > 1:
+				strArray.erase(element)
+			else:
+				break
 
 func _on_Exit_pressed():
 	get_tree().quit()
